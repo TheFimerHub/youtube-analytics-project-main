@@ -8,7 +8,7 @@ class Channel:
     __youtube_api = youtube
 
     def __init__(self, channel_id: str) -> None:
-        self._channel_id = channel_id
+        self.channel_id = channel_id
         self._channel = self.__youtube_api.channels().list(id=channel_id, part='snippet,statistics').execute()
 
         self.title = self._channel["items"][0]["snippet"]["title"]
@@ -19,7 +19,7 @@ class Channel:
         self.views = self._channel["items"][0]["statistics"]["viewCount"]
 
     def print_info(self) -> None:
-        channel = youtube.channels().list(id=self._channel_id, part='snippet,statistics').execute()
+        channel = youtube.channels().list(id=self.channel_id, part='snippet,statistics').execute()
         printj(channel)
 
     @classmethod
@@ -28,7 +28,7 @@ class Channel:
 
     def to_json(self, file):
         channel_data = {
-            "channel_id": self._channel_id,
+            "channel_id": self.channel_id,
             "title": self.title,
             "description": self.description,
             "url": self.url,
