@@ -2,7 +2,7 @@ from src.channel import Channel
 from src.implemented import api_key
 
 if __name__ == '__main__':
-    moscowpython = Channel(api_key)
+    moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')
     moscowpython.print_info()
 
     """
