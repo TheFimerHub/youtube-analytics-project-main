@@ -66,4 +66,3 @@ class Channel:
             json.dump(channel_data, json_file, ensure_ascii=False, indent=4)
 
 
-print(Channel)
