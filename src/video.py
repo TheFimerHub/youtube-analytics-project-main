@@ -5,11 +5,19 @@ from src.implemented import youtube, printj
 class Video():
     def __init__(self, video_id):
         self.__video_id = video_id
-        self._video = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails', id=video_id).execute()
-        self.title = self._video['items'][0]['snippet']['title']
-        self.url = f"https://www.youtube.com/video/{self.__video_id}"
-        self.view_count = self._video['items'][0]['statistics']['viewCount']
-        self.like_count = self._video['items'][0]['statistics']['likeCount']
+        try:
+            self._video = youtube.videos().list(part='snippet,statistics,contentDetails,topicDetails',
+                                                id=video_id).execute()
+            self.title = self._video['items'][0]['snippet']['title']
+            self.url = f"https://www.youtube.com/video/{self.__video_id}"
+            self.view_count = self._video['items'][0]['statistics']['viewCount']
+            self.like_count = self._video['items'][0]['statistics']['likeCount']
+        except:
+            self._video = None
+            self.title = None
+            self.url = None
+            self.view_count = None
+            self.like_count = None
 
     def __str__(self):
         return f'{self.title}'
